@@ -1,4 +1,4 @@
-#include "Triangle.h"
+#include "../include/Triangle.h"
 
 namespace TNCG15{
     

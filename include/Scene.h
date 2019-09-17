@@ -3,7 +3,7 @@
 namespace TNCG15{
     class Scene{
         public:
-            void createRoom(std::vector<Triangle>);
+            void setTriangles(std::vector<Triangle>);
             Triangle getIntersections(Ray ray);
 
         private:

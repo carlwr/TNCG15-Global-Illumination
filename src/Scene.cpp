@@ -1,9 +1,9 @@
-#include "Scene.h"
+#include "../include/Scene.h"
 
 namespace TNCG15
 {
-    void Scene::createRoom(std::vector<Triangle> triangles){
-
+    void Scene::setTriangles(std::vector<Triangle> roomTriangles){
+        triangles = roomTriangles;
     }
 
 

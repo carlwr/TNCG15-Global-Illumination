@@ -5,6 +5,7 @@
 namespace TNCG15{
     class Triangle{
         public:
+            Triangle();
             Triangle(glm::vec3, glm::vec3, glm::vec3, ColorDBL);
             glm::vec3 rayIntersection();
         private:
