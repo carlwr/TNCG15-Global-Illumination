@@ -1,10 +1,7 @@
- #include "include/ColorDBL.h"
- #include "src/Triangle.cpp"
- #include "src/Ray.cpp"
- #include "src/Pixel.cpp"
+
 // #include "src/Scene.cpp"
 // #include "include/glm/vec3.hpp"
-#include "src/Camera.cpp"
+#include "Camera.h"
 #include <iostream>
 using namespace std;
 
@@ -92,11 +89,11 @@ int main(){
     // Scene scene{};
     // scene.setTriangles(buildBasicRoom());
 
-    //Camera camera{5,5};
+    Camera* camera = new Camera{5,5};
 
     // TestClass tc(1);
-
-    //std::cout << camera.getPixel(0).toString();
+    //std::cout << "HEJ";
+    std::cout << (*camera).getPixel(0).toString();
 
     return 0;
 }

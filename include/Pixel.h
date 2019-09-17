@@ -1,10 +1,15 @@
+#ifndef PIXEL_H
+#define PIXEL_H
+
 #include <string>
+#include "Ray.h"
+#include "ColorDBL.h"
 
 namespace TNCG15{
     
     class Pixel{
         public:
-            Pixel(Ray pixelRay, ColorDBL pixelColor);
+            Pixel(Ray, ColorDBL);
             std::string toString();
         private:
             ColorDBL color;
@@ -12,3 +17,5 @@ namespace TNCG15{
     };
 
 }
+
+#endif

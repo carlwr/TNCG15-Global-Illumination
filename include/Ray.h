@@ -1,4 +1,8 @@
+#ifndef RAY_H
+#define RAY_H
+
 #include "glm/vec3.hpp"
+#include "Triangle.h"
 #include <string>
 
 namespace TNCG15{
@@ -17,3 +21,4 @@ namespace TNCG15{
     };
 
 }
+#endif

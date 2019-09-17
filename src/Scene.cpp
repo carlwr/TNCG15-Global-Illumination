@@ -1,10 +1,7 @@
-#include "../include/Scene.h"
-
-namespace TNCG15
-{
-    void Scene::setTriangles(std::vector<Triangle> roomTriangles){
-        triangles = roomTriangles;
-    }
+#include "Scene.h"
 
 
-} // namespace TNCG15
+void TNCG15::Scene::setTriangles(std::vector<Triangle> roomTriangles){
+    triangles = roomTriangles;
+}
+

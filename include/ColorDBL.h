@@ -1,11 +1,17 @@
+#ifndef COLORDBL_H
+#define COLORDBL_H
+
+
+
 namespace TNCG15{
-    
     class ColorDBL{
         public: 
+            ColorDBL(double red, double green, double blue);
             ColorDBL();
-            ColorDBL(double red, double green, double blue){r = red; g = green; b = blue;}
         private:
             double r,g,b;
     };
 
 }
+
+#endif

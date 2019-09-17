@@ -1,5 +1,9 @@
 
+#ifndef TRIANGLE_H
+#define TRIANGLE_H
+
 #include "glm/vec3.hpp"
+#include "ColorDBL.h"
 #include "glm/geometric.hpp"
 
 namespace TNCG15{
@@ -17,3 +21,5 @@ namespace TNCG15{
 
     };
 }
+
+#endif

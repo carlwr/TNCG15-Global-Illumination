@@ -1,4 +1,9 @@
+#ifndef SCENE_H
+#define SCENE_H
+
 #include <vector>
+#include "Triangle.h"
+#include "Ray.h"
 
 namespace TNCG15{
     class Scene{
@@ -11,3 +16,5 @@ namespace TNCG15{
             //checks which triangle in the scene intersects with a ray.
     };
 }
+
+#endif
