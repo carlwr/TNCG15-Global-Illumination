@@ -1,16 +1,15 @@
 #include "Ray.h"
 
 
-TNCG15::Ray::Ray(glm::vec3 start, glm::vec3 end)
+Ray::Ray(glm::vec3 start, glm::vec3 end): startPoint{start}, endPoint{end}
 {
-    startPoint = start;
-    endPoint = end;
-}
-TNCG15::Ray::Ray()
-{
-    
+
+    std::cout << start.x << " " << start.y << " " << start.z << std::endl;
+    std::cout << end.x << " " << end.y << " " << end.z << std::endl;
+    direction = glm::normalize(endPoint - startPoint);
+    std::cout << direction.x << " " << direction.y << " " << direction.z << std::endl;
 }
 
-std::string TNCG15::Ray::toString(){
-    return std::to_string(endPoint.x);
+std::string Ray::toString(){
+    return std::to_string(endPoint.x) + " " +   std::to_string(endPoint.y) + " " + std::to_string(endPoint.z);
 }

@@ -1,16 +1,21 @@
 #include "ColorDBL.h"
 
 
-TNCG15::ColorDBL::ColorDBL(double red, double green, double blue)
-{
-    r = red; 
-    g = green; 
-    b = blue;
+std::string ColorDBL::toString(){
+    int RGBr = 255*r;
+    int RGBg = 255*g;
+    int RGBb = 255*b;
+    return std::to_string(RGBr) + " " + std::to_string(RGBg) + " " + std::to_string(RGBb); 
 }
 
-TNCG15::ColorDBL::ColorDBL()
-{
-    r = 0.0;
-    g = 0.0;
-    b = 0.0;
+int ColorDBL::getRedAsRGB(){
+    return 255*r;
+}
+
+int ColorDBL::getGreenAsRGB(){
+    return 255*g;
+}
+
+int ColorDBL::getBlueAsRGB(){
+    return 255*b;
 }

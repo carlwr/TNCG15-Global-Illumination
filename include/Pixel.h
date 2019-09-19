@@ -4,18 +4,26 @@
 #include <string>
 #include "Ray.h"
 #include "ColorDBL.h"
+#include <iostream>
+#include <vector>
 
-namespace TNCG15{
+
     
-    class Pixel{
-        public:
-            Pixel(Ray, ColorDBL);
-            std::string toString();
-        private:
-            ColorDBL color;
-            Ray ray;
-    };
+class Pixel{
+    public:
+        Pixel( ColorDBL pColor, Ray pRay) : color{pColor}, ray{pRay}
+        {
 
-}
+        }
+        std::string toString();
+        Ray getRay(){return ray;}
+        void setColor(ColorDBL clr){color = clr;}
+        std::vector<int> getColorAsRGB();
+    private:
+        ColorDBL color;
+        Ray ray;
+};
+
+
 
 #endif
