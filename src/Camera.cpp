@@ -19,7 +19,7 @@ Camera::Camera(int w, int h): width{w}, height{h}{
 
 void Camera::initPixels(int width, int height){
     //loop though pixel width and height
-    for(int i = 0; i < width; i++){
+    for(int i = width - 1; i >= 0; i--){
         for(int j = 0; j < height; j++){
             //camera plane is 2x2 so every pixel needs to be 2/width x 2/height in size
             float deltaWidth = (float)2.f*i/width;
@@ -30,7 +30,7 @@ void Camera::initPixels(int width, int height){
             float pixelCenterZ = deltaHeight - (1.f - 1.f/(float)height);
 
             Ray ray{EYE_ONE ,glm::vec3(CAMERA_PLANE_X_COORD, pixelCenterY, pixelCenterZ)};
-            Pixel p ( ColorDBL{0,0,0}, ray);
+            Pixel p ( ColorDBL{(double)i/width,(double)j/height,0}, ray);
             pixels.push_back(p);
             
         }
@@ -47,27 +47,38 @@ void Camera::toString(){
     }
 }
 
+void Camera::castRays(Scene scene){
+    for(int i = 0; i < pixels.size(); i++){
+        std::list<Intersection> t_list = scene.getIntersections(pixels[i].getRay());
+        if(!t_list.empty()){
+            pixels[i].setColor(t_list.front().color);
+
+        }
+    }
+}
+
 void Camera::createImage(){
 
   // RGB: one byte each for red, green, blue
   const auto bytesPerPixel = 3;
   // allocate memory
   auto image = new unsigned char[width * height * bytesPerPixel];
+  //get max RGB to normalize colors
+  glm::vec3 maxRGB = getMaxRGB();
   // create a nice color transition (replace with your code)
-  
     for(int i = 0; i < pixels.size(); i++){
         // if( i != 0 && i % (width)  == 0){
         //     std::cout << std::endl;
         //     std::cout << std::endl;
         // }
         auto offset = i * bytesPerPixel;
-        image[offset    ] = pixels[i].getColorAsRGB()[0];
-        image[offset + 1] = pixels[i].getColorAsRGB()[1];
-        image[offset + 2] = pixels[i].getColorAsRGB()[2];
+        image[offset    ] = pixels[i].getColorAsRGB()[0] * (255.99/(double)maxRGB.r);
+        image[offset + 1] = pixels[i].getColorAsRGB()[1] * (255.99/(double)maxRGB.g);
+        image[offset + 2] = pixels[i].getColorAsRGB()[2] * (255.99/(double)maxRGB.b);
 
         // std::cout << pixels[i].toString() << "    ";
     }
-    std::cout << std::endl;
+    //std::cout << std::endl;
 
     // start JPEG compression
     // note: myOutput is the function defined in line 18, it saves the output in example.jpg
@@ -81,11 +92,22 @@ void Camera::createImage(){
     // error => exit code 1
 }
 
-void Camera::castRays(Scene scene){
+glm::vec3 Camera::getMaxRGB(){
+    int maxR = 1;
+    int maxG = 1;
+    int maxB = 1;
     for(int i = 0; i < pixels.size(); i++){
-        Triangle t = scene.getIntersections(pixels[i].getRay());
-        pixels[i].setColor(t.getColor());
+       if( pixels[i].getColorAsRGB()[0] > maxR){
+           maxR = pixels[i].getColorAsRGB()[0];
+       }
+       if( pixels[i].getColorAsRGB()[1] > maxG){
+           maxG = pixels[i].getColorAsRGB()[1];
+       }
+       if( pixels[i].getColorAsRGB()[2] > maxB){
+           maxB = pixels[i].getColorAsRGB()[2];
+       }
     }
+    return glm::vec3(maxR, maxG, maxB);
 }
 
 

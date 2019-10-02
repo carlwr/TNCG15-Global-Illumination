@@ -12,7 +12,6 @@ class Camera{
         
 
         Pixel getPixel(int x){
-            std::cout << std::to_string(x);
             return pixels.at(x);
         }
 
@@ -20,11 +19,12 @@ class Camera{
         void toString();
         void createImage();
         void castRays(Scene scene);
+        glm::vec3 getMaxRGB();
 
     private:
         int width, height;
         std::vector<Pixel> pixels;
-        glm::vec3 EYE_ONE = glm::vec3(-2.0f,0.0f,0.0f);
+        glm::vec3 EYE_ONE = glm::vec3(-1.0f,0.0f,0.0f);
         float CAMERA_PLANE_X_COORD = 0.0f;
         void initPixels(int, int);
 

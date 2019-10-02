@@ -11,6 +11,69 @@ using namespace std;
 
 
 
+std::vector<Triangle> buildTestRoom(){
+    // b = bottom
+    glm::vec3 A_b(0.f, 6.f, -5.f);
+    glm::vec3 B_b(10.f, 6.f, -5.f);
+    glm::vec3 C_b(13.f, 0.f, -5.f);
+    glm::vec3 D_b(10.f, -6.f, -5.f);
+    glm::vec3 E_b(0.f, -6.f, -5.f);
+    glm::vec3 F_b(-3.f, 0.f, -5.f);
+
+    // t = top
+    glm::vec3 A_t(0.f, 6.f, 5.f);
+    glm::vec3 B_t(10.f, 6.f, 5.f);
+    glm::vec3 C_t(13.f, 0.f, 5.f);
+    glm::vec3 D_t(10.f, -6.f, 5.f);
+    glm::vec3 E_t(0.f, -6.f, 5.f);
+    glm::vec3 F_t(-3.f, 0.f, 5.f);
+
+
+    std::vector<Triangle> triangles{
+    //Walls
+    Triangle(B_t, D_b, D_t, ColorDBL(1.,0.,1.)),
+    // Triangle(D_b, C_b, D_t, ColorDBL(1.,0.,1.)),
+
+
+    // Triangle(B_t, C_t, C_b, ColorDBL(1.,0.,1.)),
+    // Triangle(B_t, C_b, B_b, ColorDBL(1.,0.,1.)),
+
+    // Triangle(A_t, B_t, B_b, ColorDBL(1.,1.,0.)),
+    // Triangle(A_b, A_t, B_b, ColorDBL(1.,1.,0.)),
+    
+    // Triangle(E_b, D_b, E_t, ColorDBL(0.,1.,1.)),
+    // Triangle(E_t, D_b, D_t, ColorDBL(0.,1.,1.)),
+
+    // Triangle(B_b, E_b, A_b, ColorDBL(1.,1.,1.)),
+    // Triangle(B_b, D_b, E_b, ColorDBL(1.,1.,1.)),
+
+    // Triangle(B_t, E_t, A_t, ColorDBL(1.,1.,1.)),
+    // Triangle(B_t, D_t, E_t, ColorDBL(1.,1.,1.)),
+
+
+    // Triangle(B_t, D_t, C_t, ColorDBL(1.,1.,1.)),
+    // Triangle(B_b, D_b, C_b, ColorDBL(1.,1.,1.)),
+
+    
+
+    // //Floor
+    // Triangle(E_b, A_b, F_b, ColorDBL(1.,1.,1.)),
+    // Triangle(E_b, A_b, D_b, ColorDBL(1.,1.,1.)),
+    // Triangle(D_b, B_b, E_b, ColorDBL(1.,1.,1.)),
+    // Triangle(D_b, C_b, B_b, ColorDBL(1.,1.,1.)),
+    // //A-B   RED
+    // //D-E  YELLOW
+    // Triangle(D_b, E_t, D_t, ColorDBL(1.,1.,0.)),
+    // Triangle(E_b, E_t, D_b, ColorDBL(1.,1.,0.)),
+
+    // Triangle(A_b, B_t, A_t, ColorDBL(1.,0.,0.)),
+    // Triangle(B_b, B_t, A_b, ColorDBL(1.,0.,0.))
+
+    };
+
+    return triangles;
+
+}
 
 
 std::vector<Triangle> buildBasicRoom(){
@@ -56,34 +119,35 @@ std::vector<Triangle> buildBasicRoom(){
     //A-B   RED
     Triangle(A_b, B_t, A_t, ColorDBL(1.,0.,0.)),
     Triangle(B_b, B_t, A_b, ColorDBL(1.,0.,0.)),
-    //B-C  BLUE
+    //B-C  Green
     Triangle(B_b, C_t, B_t, ColorDBL(0.,1.,0.)),
     Triangle(C_b, C_t, B_b, ColorDBL(0.,1.,0.)),
-    //C-D  GREEN
+    // //C-D  Blue
     Triangle(C_b, D_t, C_t, ColorDBL(0.,0.,1.)),
     Triangle(D_b, D_t, C_b, ColorDBL(0.,0.,1.)),
-    //D-E  YELLOW
+    // //D-E  YELLOW
     Triangle(D_b, E_t, D_t, ColorDBL(1.,1.,0.)),
     Triangle(E_b, E_t, D_b, ColorDBL(1.,1.,0.)),
-    //E-F  CYAN
+    // //E-F  CYAN
     Triangle(E_b, F_t, E_t, ColorDBL(0.,1.,1.)),
     Triangle(F_b, F_t, E_b, ColorDBL(0.,1.,1.)),
-    //F-A  PURPLE
+
+    // //F-A  PURPLE
     Triangle(F_b, A_t, F_t, ColorDBL(1.,0.,1.)),
     Triangle(A_b, A_t, F_b, ColorDBL(1.,0.,1.)),
 
-    //Floor
+    // // //Floor
     Triangle(E_b, A_b, F_b, ColorDBL(1.,1.,1.)),
     Triangle(E_b, D_b, A_b, ColorDBL(1.,1.,1.)),
-    Triangle(D_b, B_b, E_b, ColorDBL(1.,1.,1.)),
+    Triangle(D_b, B_b, A_b, ColorDBL(1.,1.,1.)),
     Triangle(D_b, C_b, B_b, ColorDBL(1.,1.,1.)),
 
 
-    //Roof
-    Triangle(E_b, F_b, A_b, ColorDBL(1.,1.,1.)),
-    Triangle(E_b, A_b, D_b, ColorDBL(1.,1.,1.)),
-    Triangle(D_b, E_b, B_b, ColorDBL(1.,1.,1.)),
-    Triangle(D_b, B_b, C_b, ColorDBL(1.,1.,1.))
+    // // //Roof
+    Triangle(E_t, F_t, A_t, ColorDBL(0.5,0.5,0.5)),
+    Triangle(E_t, A_t, D_t, ColorDBL(0.5,0.5,0.5)),
+    Triangle(D_t, A_t, B_t, ColorDBL(0.5,0.5,0.5)),
+    Triangle(D_t, B_t, C_t, ColorDBL(0.5,0.5,0.5))
     };
 
     return triangles;
@@ -95,15 +159,16 @@ int main()
     Scene scene{};
     scene.setTriangles(buildBasicRoom());
     
-    int width;
-    int height;
-    std::cout << "Width: ";
-    std::cin >> width;
-    std::cout << "Height";
-    std::cin >> height;
 
-    Camera camera(width,height);
+    // int width;
+    // int height;
+    // std::cout << "Width: ";
+    // std::cin >> width;
+    // std::cout << "Height";
+    // std::cin >> height;
 
+    // Camera camera(width,height);
+    Camera camera(800,800);
     camera.castRays(scene);
 
     camera.createImage();

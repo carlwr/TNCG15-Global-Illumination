@@ -4,7 +4,7 @@
 // A point on the triangle is given by T(u,v) = (1-u-v)*v0 + u*v1 + v*v2
 // => T = u*E1 + v*E2 - t*D
 // were E1 = v1 - v0, E2 = v2 - v0, D = Ray Direction
-bool Triangle::rayIntersection(Ray& ray, glm::vec3& intersection){
+bool Triangle::rayIntersection(Ray& ray, Intersection& intersection){
     // u,v to solve for
     float u, v;
     glm::vec3 intersectionPoint;
@@ -25,6 +25,7 @@ bool Triangle::rayIntersection(Ray& ray, glm::vec3& intersection){
     // Calculate u
     u = glm::dot(rayV0,edgeNormal) * invDet; 
     if(u < 0 || u > 1){
+
         return false; //no intersection
     }
 
@@ -34,6 +35,7 @@ bool Triangle::rayIntersection(Ray& ray, glm::vec3& intersection){
     //calculate v
     v = glm::dot(D, Q) * invDet;
     if(v < 0 || v > 1 || u + v > 1){
+
         return false; //no intersection
     }
     
@@ -41,10 +43,10 @@ bool Triangle::rayIntersection(Ray& ray, glm::vec3& intersection){
 
 
     if ( t < 0){
+
        return false; //no intersection
     } 
-
-
-    intersection = glm::vec3(ray.getStart() + t*D);
+    intersection.position = ray.getStart() + t*D;
+    // intersection = glm::vec3(ray.getStart() + t*D);
     return true;
 }

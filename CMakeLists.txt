@@ -6,4 +6,4 @@ link_directories(include)
 file(GLOB SOURCES "src/*.cpp")
 
 
-add_executable(program ${SOURCES})
+add_executable(GIProgram ${SOURCES})
