@@ -3,6 +3,7 @@ project (Global_illumination)
 
 include_directories(include)
 link_directories(include)
+
 file(GLOB SOURCES "src/*.cpp")
 
 

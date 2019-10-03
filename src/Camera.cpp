@@ -1,5 +1,4 @@
 #include "Camera.h"
-
 #include "toojpeg.h"
 #include <fstream>
 

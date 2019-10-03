@@ -7,6 +7,8 @@
 #include "Camera.h"
 
 #include <iostream>
+#include "Tetrahedron.h"
+#include "Sphere.h"
 using namespace std;
 
 
@@ -158,16 +160,11 @@ int main()
 {
     Scene scene{};
     scene.setTriangles(buildBasicRoom());
-    
+    SceneObject* tetra = new Tetrahedron(glm::vec3(10,0,0), ColorDBL(0.5,0.2,0.9), 7.0f);
+    SceneObject* sphere = new Sphere(glm::vec3(5,-1,-2), ColorDBL(0.5,0.2,0.9), 2.0f);
+    scene.addSceneObject(sphere);
+    scene.addSceneObject(tetra);
 
-    // int width;
-    // int height;
-    // std::cout << "Width: ";
-    // std::cin >> width;
-    // std::cout << "Height";
-    // std::cin >> height;
-
-    // Camera camera(width,height);
     Camera camera(800,800);
     camera.castRays(scene);
 

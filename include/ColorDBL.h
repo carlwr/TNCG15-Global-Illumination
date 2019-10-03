@@ -7,7 +7,9 @@
 class ColorDBL{
     public: 
         ColorDBL(double red, double green, double blue): r{red}, g{green}, b{blue}{}
-        ColorDBL();
+        ColorDBL(){
+
+        }
         int getRedAsRGB();
         int getGreenAsRGB();
         int getBlueAsRGB();

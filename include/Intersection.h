@@ -12,6 +12,7 @@ class Intersection{
         glm::vec3 position;
         glm::vec3 normal;
         ColorDBL color;
+        float distance;
 };
 
 #endif

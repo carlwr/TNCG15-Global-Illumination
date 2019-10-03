@@ -9,12 +9,6 @@
 class Camera{
     public:
         Camera(int w, int h);
-        
-
-        Pixel getPixel(int x){
-            return pixels.at(x);
-        }
-
         std::vector<Pixel> getPixels(){return pixels;}
         void toString();
         void createImage();

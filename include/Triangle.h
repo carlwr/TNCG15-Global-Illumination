@@ -18,6 +18,7 @@ class Triangle{
         glm::vec3 getNormal(){return normal;}
         bool rayIntersection(Ray& ray, Intersection& intersection);
         ColorDBL getColor(){return color;}
+        glm::vec3 getv0(){return v0;}
     private:
         const glm::vec3 v0, v1, v2;
         ColorDBL color;
