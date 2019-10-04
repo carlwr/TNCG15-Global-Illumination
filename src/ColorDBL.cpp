@@ -19,3 +19,7 @@ int ColorDBL::getGreenAsRGB(){
 int ColorDBL::getBlueAsRGB(){
     return 255*b;
 }
+
+ColorDBL ColorDBL::mergeColor(ColorDBL color){
+    return ColorDBL(r * color.getRed(), g*color.getGreen(), b*color.getBlue());
+}

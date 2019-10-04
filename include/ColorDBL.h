@@ -10,10 +10,16 @@ class ColorDBL{
         ColorDBL(){
 
         }
+        ColorDBL mergeColor(ColorDBL);
         int getRedAsRGB();
         int getGreenAsRGB();
         int getBlueAsRGB();
         std::string toString();
+
+        double getRed(){return r;}
+        double getGreen(){return g;}
+        double getBlue(){return b;}
+
 
     private:
         double r{};

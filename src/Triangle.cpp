@@ -18,6 +18,11 @@ bool Triangle::rayIntersection(Ray& ray, Intersection& intersection){
     glm::vec3 edgeNormal = glm::cross(D,E2); 
     
     float det = glm::dot(E1,edgeNormal);
+
+
+    if (std::abs(det) < 0.00000000001)
+        return false;
+
     float invDet = 1 / det; 
 
     glm::vec3 rayV0 = ray.getStart() - v0; 
@@ -39,14 +44,14 @@ bool Triangle::rayIntersection(Ray& ray, Intersection& intersection){
         return false; //no intersection
     }
     
-    float t = glm::dot(E2,Q) * invDet;
+    float t = glm::dot(E2,Q) * invDet ;
 
 
     if ( t < 0){
 
        return false; //no intersection
     } 
-    intersection.position = ray.getStart() + t*D;
+    intersection.position = ray.getStart() + t*D + normal* 0.1f;
     intersection.distance = t;
     // intersection = glm::vec3(ray.getStart() + t*D);
     return true;

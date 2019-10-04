@@ -29,7 +29,7 @@ void Camera::initPixels(int width, int height){
             float pixelCenterZ = deltaHeight - (1.f - 1.f/(float)height);
 
             Ray ray{EYE_ONE ,glm::vec3(CAMERA_PLANE_X_COORD, pixelCenterY, pixelCenterZ)};
-            Pixel p ( ColorDBL{(double)i/width,(double)j/height,0}, ray);
+            Pixel p ( ColorDBL{0,0,0}, ray);
             pixels.push_back(p);
             
         }
@@ -50,7 +50,7 @@ void Camera::castRays(Scene scene){
     for(int i = 0; i < pixels.size(); i++){
         std::list<Intersection> t_list = scene.getIntersections(pixels[i].getRay());
         if(!t_list.empty()){
-            pixels[i].setColor(t_list.front().color);
+            pixels[i].setColor(t_list.front().color.mergeColor(scene.shadowRayContribution(t_list.front().position)));
 
         }
     }

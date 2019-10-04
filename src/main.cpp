@@ -9,6 +9,7 @@
 #include <iostream>
 #include "Tetrahedron.h"
 #include "Sphere.h"
+#include "PointLight.h"
 using namespace std;
 
 
@@ -160,9 +161,11 @@ int main()
 {
     Scene scene{};
     scene.setTriangles(buildBasicRoom());
-    SceneObject* tetra = new Tetrahedron(glm::vec3(10,0,0), ColorDBL(0.5,0.2,0.9), 7.0f);
-    SceneObject* sphere = new Sphere(glm::vec3(5,-1,-2), ColorDBL(0.5,0.2,0.9), 2.0f);
-    scene.addSceneObject(sphere);
+    SceneObject* tetra = new Tetrahedron(glm::vec3(5,0,-4), ColorDBL(0.5,0.2,0.9), 3.0f);
+    // SceneObject* sphere = new Sphere(glm::vec3(7,0,0), ColorDBL(0.5,0.2,0.9), 2.0f);
+    PointLight* light = new PointLight(glm::vec3(5,0,5));
+    scene.addLight(light);
+    // scene.addSceneObject(sphere);
     scene.addSceneObject(tetra);
 
     Camera camera(800,800);

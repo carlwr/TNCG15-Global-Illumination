@@ -20,7 +20,7 @@ class Pixel{
         void setColor(ColorDBL clr){color = clr;}
         std::vector<int> getColorAsRGB();
     private:
-        ColorDBL color;
+        ColorDBL color{0,0,0};
         Ray ray;
 };
 

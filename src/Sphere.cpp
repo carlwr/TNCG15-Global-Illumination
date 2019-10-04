@@ -32,12 +32,14 @@ std::vector<Intersection> Sphere::intersection(Ray& ray){
     } 
     bsqrt = glm::sqrt(bsqrt);
 
+    glm::vec3 EPSILON{0.000000000001,0.0000000000000001,0.000000000001};
+
    if(firstIntersectionDistance <= 0 && secondIntersectionDistance <= 0){
 
        return intersections;
    }
    else if(secondIntersectionDistance < firstIntersectionDistance) {
-       intersection.position = rayOrigin + secondIntersectionDistance*normalizedRayDirection;
+       intersection.position = rayOrigin + secondIntersectionDistance*normalizedRayDirection - EPSILON;
        intersection.normal = glm::normalize((rayOrigin + secondIntersectionDistance*normalizedRayDirection) - sphereCenter);
        intersection.distance = glm::length((rayOrigin + secondIntersectionDistance*normalizedRayDirection) - rayOrigin);
        intersection.color = color;
@@ -46,7 +48,7 @@ std::vector<Intersection> Sphere::intersection(Ray& ray){
    }
    else if(firstIntersectionDistance < secondIntersectionDistance) {
        
-       intersection.position = rayOrigin + secondIntersectionDistance*normalizedRayDirection;
+       intersection.position = rayOrigin + secondIntersectionDistance*normalizedRayDirection - EPSILON;
        intersection.normal = glm::normalize((rayOrigin + secondIntersectionDistance*normalizedRayDirection) - sphereCenter);
        intersection.distance = glm::length((rayOrigin + secondIntersectionDistance*normalizedRayDirection) - rayOrigin);
        intersection.color = color;
@@ -54,7 +56,7 @@ std::vector<Intersection> Sphere::intersection(Ray& ray){
        return intersections;
    }
    else {
-       intersection.position = rayOrigin + secondIntersectionDistance*normalizedRayDirection;
+       intersection.position = rayOrigin + secondIntersectionDistance*normalizedRayDirection - EPSILON;
        intersection.normal = glm::normalize((rayOrigin + secondIntersectionDistance*normalizedRayDirection) - sphereCenter);
        intersection.distance = glm::length((rayOrigin + secondIntersectionDistance*normalizedRayDirection) - rayOrigin);
        intersection.color = color;
