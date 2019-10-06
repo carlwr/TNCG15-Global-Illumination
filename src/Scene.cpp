@@ -38,7 +38,6 @@ ColorDBL Scene::shadowRayContribution(glm::vec3 point){
         glm::vec3 shadowRayDir = glm::normalize(light->getPosition() - point);
         Ray shadowRay{point, light->getPosition()};
         std::list<Intersection> intersections = getIntersections(shadowRay);
-        //
         if(intersections.front().distance < glm::distance(light->getPosition(), point)-0.1f ){
             std::cout << intersections.front().distance << " and " << glm::distance(light->getPosition(), point) << std::endl;
             //No interaction
