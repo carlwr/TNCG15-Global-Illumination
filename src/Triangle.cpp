@@ -51,7 +51,8 @@ bool Triangle::rayIntersection(Ray& ray, Intersection& intersection){
 
        return false; //no intersection
     } 
-    intersection.position = ray.getStart() + t*D + normal* 0.1f;
+    //move out position not to intersect with itself
+    intersection.position = ray.getStart() + t*D + normal;
     intersection.distance = t;
     // intersection = glm::vec3(ray.getStart() + t*D);
     return true;
